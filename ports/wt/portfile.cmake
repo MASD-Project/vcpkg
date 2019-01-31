@@ -40,6 +40,8 @@ vcpkg_configure_cmake(
         -DUSE_SYSTEM_GLEW=ON
 
         -DCMAKE_INSTALL_DIR=share
+
+        -DCMAKE_CXX_STANDARD=17
 )
 
 vcpkg_install_cmake()
