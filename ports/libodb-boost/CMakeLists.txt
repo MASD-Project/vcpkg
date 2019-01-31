@@ -1,38 +1,37 @@
 cmake_minimum_required(VERSION 3.0)
-project(libodb-pgsql VERSION 2.5.0 LANGUAGES CXX)
+project(libodb-boost VERSION 2.5.0 LANGUAGES CXX)
 
 add_definitions(-D_GLIBCXX_USE_CXX11_ABI=1)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(odb 2.5.0 REQUIRED COMPONENTS libodb)
-find_package(PostgreSQL REQUIRED)
-
 configure_file(config.unix.h.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/odb/pgsql/details/config.h COPYONLY)
+    ${CMAKE_CURRENT_SOURCE_DIR}/odb/boost/details/config.h COPYONLY)
 
+# FIXME: should we require boost? which packages?
+# find_package(PostgreSQL REQUIRED)
 set(LIBODB_INSTALL_HEADERS ON CACHE BOOL "Install the header files (a debug install)")
 file(GLOB_RECURSE libodb_src LIST_DIRECTORIES False
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     *.cxx)
-list(FILTER libodb_src EXCLUDE REGEX /posix/.*)
-add_library(libodb-pgsql ${libodb_src})
-target_include_directories(libodb-pgsql
-    PUBLIC 
+add_library(libodb-boost ${libodb_src})
+target_include_directories(libodb-boost
+    PUBLIC
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 
 )
 
-target_link_libraries(libodb-pgsql PRIVATE odb::libodb ${PostgreSQL_LIBRARY})
+target_link_libraries(libodb-boost PRIVATE odb::libodb)
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(libodb-pgsql PRIVATE
-        -DLIBODB_PGSQL_DYNAMIC_LIB)
+    target_compile_definitions(libodb-boost PRIVATE
+        -DLIBODB_BOOST_DYNAMIC_LIB)
 else()
-    target_compile_definitions(libodb-pgsql PRIVATE
-        -DLIBODB_PGSQL_STATIC_LIB)
+    target_compile_definitions(libodb-boost PRIVATE
+        -DLIBODB_BOOST_STATIC_LIB)
 endif()
-install(TARGETS libodb-pgsql EXPORT odb_pgsqlConfig
-    COMPONENT pgsql
+install(TARGETS libodb-boost EXPORT odb_boostConfig
+    COMPONENT boost
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION bin
@@ -45,7 +44,8 @@ install(DIRECTORY odb DESTINATION include/
         PATTERN "*.hxx"
         PATTERN "*.ixx"
         PATTERN "*.txx"
+        PATTERN "*.options"
 )
 endif()
-install(EXPORT odb_pgsqlConfig NAMESPACE odb:: COMPONENT pgsql DESTINATION share/odb)
-export(TARGETS libodb-pgsql NAMESPACE odb:: FILE odb_pgsqlConfig.cmake)
+install(EXPORT odb_boostConfig NAMESPACE odb:: COMPONENT boost DESTINATION share/odb)
+export(TARGETS libodb-boost NAMESPACE odb:: FILE odb_boostConfig.cmake)

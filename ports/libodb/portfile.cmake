@@ -8,14 +8,19 @@
 
 include(vcpkg_common_functions)
 include(CMakePackageConfigHelpers)
-set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/libodb-2.4.0)
-vcpkg_download_distfile(ARCHIVE
-    URLS "http://www.codesynthesis.com/download/odb/2.4/libodb-2.4.0.tar.gz"
-    FILENAME "libodb-2.4.0.tar.gz"
-    SHA512 f1311458634695eb6ba307ebfd492e3b260e7beb06db1c5c46df58c339756be4006322cdc4e42d055bf5b2ad14ce4656ddcafcc4e16c282034db8a77d255c3eb
+
+vcpkg_from_git(
+    OUT_SOURCE_PATH SOURCE_PATH
+    URL "git://git.codesynthesis.com/odb/libodb.git"
+    REF 9786d1593a202412eb59b30a4fff0422788ff7bc
+    SHA512 a3a2612ed88280e50e9e0f0151fa246abfe32d84d18b59ff8ac6b7f4244b1b5df3a40993932032bbdd4655dbaad1623023400ec3edcec5d7fc7085f5144ac7be
 )
-vcpkg_extract_source_archive(${ARCHIVE})
-file(COPY ${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt DESTINATION ${SOURCE_PATH})
+
+file(COPY
+  ${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt
+  ${CMAKE_CURRENT_LIST_DIR}/config.unix.h.in
+  DESTINATION ${SOURCE_PATH})
+
 vcpkg_configure_cmake(
     SOURCE_PATH ${SOURCE_PATH}
     OPTIONS_DEBUG
@@ -29,7 +34,7 @@ file(WRITE ${CURRENT_PACKAGES_DIR}/share/odb/odb_libodbConfig-debug.cmake "${LIB
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/share)
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/odbConfig.cmake DESTINATION ${CURRENT_PACKAGES_DIR}/share/odb)
 write_basic_package_version_file(${CURRENT_PACKAGES_DIR}/share/odb/odbConfigVersion.cmake
-    VERSION 2.4.0
+    VERSION 2.5.0
     COMPATIBILITY SameMajorVersion
 )
 # Handle copyright
