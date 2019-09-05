@@ -4,7 +4,7 @@ include(CMakePackageConfigHelpers)
 # 2.5.0-b.15
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    URL "git://git.codesynthesis.com/odb/libodb.git"
+    URL "https://git.codesynthesis.com/odb/libodb.git"
     REF v2.5.0-b.15
     SHA512 c1884c89c76bbcb9cfb368855ef0f86ae6596791a3610e3ba358a0789f6e7ecd1c81d0bb4983e5bdbb03235739a514e1cc0f9c769ebe18c03fce2dd348ad784e
 )
