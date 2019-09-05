@@ -3,8 +3,8 @@ include(vcpkg_common_functions)
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
     URL "git://git.codesynthesis.com/odb/libodb-pgsql.git"
-    REF 41c0f00576a4c47281570d9815a755df362d4e55
-    SHA512 0847138cfbd78c29e5829950f1f753ddfc509180f12d3aef82318c642e6afbe654ff3509cd78c5c6a2355ab3015935b5b6a3004a9a45762ff652b487bbf75999
+    REF v2.5.0-b.15
+    SHA512 e68610f21112a45a9f10cfd33f92b7d163cec7281f789df7d19af31e907d35d48dea452c1d4db1210190125fd9509f8f9f6194a89beb04e7217c9c38b37ac3ee
 )
 
 file(COPY

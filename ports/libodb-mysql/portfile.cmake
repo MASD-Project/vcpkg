@@ -3,8 +3,8 @@ include(vcpkg_common_functions)
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
     URL "git://git.codesynthesis.com/odb/libodb-mysql.git"
-    REF fa51cc270fe6696a0be96e372dd0c00921f1c8b3
-    SHA512 84c5f57a146a238911b6de5d568acacd85712ab9250715b902c33146f67ab13f86720f7d38ea103a2a8556816373e1e1f814d2ddaf4c46664a9744c6cd7f82cc
+    REF v2.5.0-b.15
+    SHA512 INCORRECT_HASH
     PATCHES ${CMAKE_CURRENT_LIST_DIR}/adapter_mysql_8.0.patch
 )
 

@@ -3,8 +3,8 @@ include(vcpkg_common_functions)
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
     URL "git://git.codesynthesis.com/odb/libodb-boost.git"
-    REF e6c9f749aea3b741bd3d35a2d14c92e8c3227bb7
-    SHA512 6c9f031d1c23730a8ee6a4681da35d4ef846987162c0dd9ad887391442b24d4f1630f329392f8fb14b26f441988c3de562f3e74a41e27cf3b929b3cc23b5c747
+    REF v2.5.0-b.15
+    SHA512 a52e2e0f8f7d170e9ee0374ad7a20240414b9914a2eb4a2036cfe560901034dd47a8fd77feacf62b92b9ebfa368d7e6b588eab60360b9e219665d01cd78478bc
 )
 
 file(COPY

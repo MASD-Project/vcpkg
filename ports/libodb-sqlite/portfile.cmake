@@ -3,8 +3,8 @@ include(vcpkg_common_functions)
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
     URL "git://git.codesynthesis.com/odb/libodb-sqlite.git"
-    REF 1722964fc477213f36c78272505eb09f6073bff4
-    SHA512 eda436648c13d85c1249bc8d7b223e76f82c5133dbbb70d68649d8a8fb1b4ab1a244e9813703a039a430ca29a271d78e92b52f9424eaf03352e70e29c0391053
+    REF v2.5.0-b.15
+    SHA512 05855ca4feff412ec867dd3dc1f9ef0e5e4ea580e1116a50b073d220f8e66e096bea853a6218a4ae0cbec08bdc6299aee1089cf91ca0986ff324033d2579c067
 )
 
 file(COPY
